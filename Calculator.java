@@ -16,55 +16,55 @@ public class Calculator implements ActionListener
 
     JPanel titlePanel, inputPanel, buttonPanel;
     JLabel firstNumLabel, secondNumLabel, operationLabel, answerLabel, firstNum, secondNum, operationStr, answerNum;
-    JButton oneButton, twoButton, threeButton, fourButton, fiveButton,sixButton, sevenButton, eightButton, nineButton, zeroButton, plusButton,minusButton, multiplyButton, divideButton, equalsButton, pointButton;
+    JButton oneButton, twoButton, threeButton, fourButton, fiveButton,sixButton, sevenButton, eightButton, nineButton, zeroButton, plusButton,minusButton, multiplyButton, divideButton, equalsButton, pointButton, deleteOneButton, deleteAllButton;
 
     public JPanel createContentPane()
     {
         JPanel totalGUI = new JPanel();
         totalGUI.setLayout(null);
-        totalGUI.setSize(1000, 1000);
+        totalGUI.setSize(500, 500);
         totalGUI.setVisible(true);
 
         // Creation of a Panel to have the title labels
         titlePanel = new JPanel();
         titlePanel.setLayout(null);
         titlePanel.setLocation(10, 0);
-        titlePanel.setSize(1000, 1000);
+        titlePanel.setSize(300, 300);
         totalGUI.add(titlePanel);
 
-        firstNumLabel = new JLabel("First #");
+        firstNumLabel = new JLabel("1st");
         firstNumLabel.setLocation(0, 0);
-        firstNumLabel.setSize(50, 30);
+        firstNumLabel.setSize(65, 30);
         firstNumLabel.setHorizontalAlignment(0);
         firstNumLabel.setForeground(Color.orange);
         titlePanel.add(firstNumLabel);
 
-        operationLabel = new JLabel("Operation");
-        operationLabel.setLocation(50, 0);
-        operationLabel.setSize(50, 30);
+        operationLabel = new JLabel("Op");
+        operationLabel.setLocation(65, 0);
+        operationLabel.setSize(20, 30);
         operationLabel.setHorizontalAlignment(0);
         operationLabel.setForeground(Color.red);
         titlePanel.add(operationLabel);
 
-        secondNumLabel = new JLabel("Second #");
-        secondNumLabel.setLocation(110, 0);
-        secondNumLabel.setSize(50, 30);
+        secondNumLabel = new JLabel("2nd");
+        secondNumLabel.setLocation(85, 0);
+        secondNumLabel.setSize(65, 30);
         secondNumLabel.setHorizontalAlignment(0);
         secondNumLabel.setForeground(Color.orange);
         titlePanel.add(secondNumLabel);
 
         answerLabel = new JLabel("Answer");
-        answerLabel.setLocation(170, 0);
-        answerLabel.setSize(50, 30);
+        answerLabel.setLocation(85, 40);
+        answerLabel.setSize(65, 30);
         answerLabel.setHorizontalAlignment(0);
-        answerLabel.setForeground(Color.green);
+        answerLabel.setForeground(Color.darkGray);
         titlePanel.add(answerLabel);
 
         // Creation of a Panel to contain the inputs and answer labels
 
         inputPanel = new JPanel();
         inputPanel.setLayout(null);
-        inputPanel.setLocation(10, 40);
+        inputPanel.setLocation(10, 70);
         inputPanel.setSize(260, 30);
         totalGUI.add(inputPanel);
 
@@ -97,7 +97,7 @@ public class Calculator implements ActionListener
         buttonPanel = new JPanel();
         buttonPanel.setLayout(null);
         buttonPanel.setLocation(0, 0);
-        buttonPanel.setSize(1000, 1000);
+        buttonPanel.setSize(300, 300);
         totalGUI.add(buttonPanel);
 
         // Creating buttons 
@@ -202,6 +202,20 @@ public class Calculator implements ActionListener
         divideButton.setSize(50, 50);
         divideButton.addActionListener(this);
         buttonPanel.add(divideButton);
+
+        deleteOneButton = new JButton("<X");
+        deleteOneButton.setLocation(150, 50);
+        deleteOneButton.setSize(50, 50);
+        deleteOneButton.addActionListener(this);
+        buttonPanel.add(deleteOneButton);
+
+        deleteAllButton = new JButton("C");
+        deleteAllButton.setLocation(100, 50);
+        deleteAllButton.setSize(50, 50);
+        deleteAllButton.addActionListener(this);
+        buttonPanel.add(deleteAllButton);
+
+
         
         return totalGUI;
     }
@@ -217,7 +231,7 @@ public class Calculator implements ActionListener
         frame.setContentPane(demo.createContentPane());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
+        frame.setSize(300, 450);
         frame.setVisible(true);
     }
 
@@ -385,7 +399,7 @@ public class Calculator implements ActionListener
         if (e.getSource() == multiplyButton)
         {   if (!(firstNumAmount.equals("")) && operation.equals(""))
             {
-                operation += "x";
+                operation += "*";
                 operationLabel.setText("" + operation);
             } // end if
         } // end if
@@ -421,37 +435,118 @@ public class Calculator implements ActionListener
         if(e.getSource() == equalsButton)
         {
             this.equalsButtonMethod();
-            answerLabel.setText("" + answerNumAmount);
-
+            
+            this.answerLabel.setText("" + this.answerNumAmount);
+            //this.answerNumAmount = "";
         }
+
+        if (e.getSource() == deleteOneButton)
+        {
+            this.deleteOneButtonMethod();
+        } // end if
+
+        if (e.getSource() == deleteAllButton)
+        {
+            this.deleteAllButtonMethod();
+        } // end if
     } // end actionPerformed
 
+    // Performs the function of the equalsButton
     public void equalsButtonMethod()
     {
+        float computation;
         if (!(this.firstNumAmount.equals("")) && !(this.secondNumAmount.equals("")))
             {
                 if (this.operation.equals("+"))
                 {
-                    answerNumAmount = this.firstNumAmount.parseFloat(this.firstNumAmount) + parseFloat(this.secondNumAmount);
+                    computation = Float.parseFloat(this.firstNumAmount) + Float.parseFloat(this.secondNumAmount);
+                    this.answerNumAmount = Float.toString(computation);
                 }
 
                 if (this.operation.equals("-"))
                 {
-                    
+                    computation = Float.parseFloat(this.firstNumAmount) - Float.parseFloat(this.secondNumAmount);
+                    this.answerNumAmount = Float.toString(computation);
                 }
 
                 if (this.operation.equals("*"))
                 {
-                    
+                    computation = Float.parseFloat(this.firstNumAmount) * Float.parseFloat(this.secondNumAmount);
+                    this.answerNumAmount = Float.toString(computation);;
                 }
 
                 if (this.operation.equals("/"))
                 {
-                    
+                    if (!(this.secondNumAmount.equals(0)))
+                    {
+                        computation = Float.parseFloat(this.firstNumAmount) / Float.parseFloat(this.secondNumAmount);
+                        this.answerNumAmount = Float.toString(computation);
+                    }
+                    /*
+                    else
+                    {
+                        answerNumAmount = "Can't /0";
+                    }
+                    */
                 }
+
+                this.firstNumLabel.setText("1st");
+                this.firstNumAmount = "";
+
+                this.secondNumLabel.setText("2nd");
+                this.secondNumAmount = "";
+
+                this.operationLabel.setText("Op");
+                this.operation = "";
+
+
             }
     }
 
+    // Performs the function of the deleteOneButton
+    public void deleteOneButtonMethod()
+    {
+        if (this.operation.equals(""))
+        {
+            this.firstNumAmount = this.firstNumAmount.substring(0, this.firstNumAmount.length() - 1);
+            this.firstNumLabel.setText("" + this.firstNumAmount);
+        } // end if
+        else if (!(this.firstNumAmount.equals("")) && this.secondNumAmount.equals(""))
+        {
+            this.operation = this.operation.substring(0, this.operation.length() - 1);
+            this.operationLabel.setText("" + this.operation);
+        }
+        //if (!(this.firstNumAmount.equals("")) && !(this.operation.length() > 0))
+        else
+        {
+            this.secondNumAmount = this.secondNumAmount.substring(0, this.secondNumAmount.length() - 1);
+            this.secondNumLabel.setText("" + secondNumAmount);
+        }
+    }
+
+    public void deleteAllButtonMethod()
+    {
+        this.firstNumLabel.setText("1st");
+        this.firstNumAmount = "";
+
+        this.secondNumLabel.setText("2nd");
+        this.secondNumAmount = "";
+
+        this.operationLabel.setText("Op");
+        this.operation = "";
+    }
+    // Checks if an input number is too long
+    public boolean tooLong()
+    {
+        boolean result = false;
+
+        if (this.firstNumAmount.length() > 9)
+        {
+            result = true;
+        }
+
+        return result;
+    }
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
