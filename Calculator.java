@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.*;
 
-public class Calculator implements  ActionListener
+public class Calculator implements ActionListener
 {
     int count = 0;
 
@@ -203,39 +203,11 @@ public class Calculator implements  ActionListener
         divideButton.addActionListener(this);
         buttonPanel.add(divideButton);
         
-
-
-
         return totalGUI;
     }
 
-    // This is the new ActionPerformed Method.
-    // It catches any events with an ActionListener attached.
-    // Using an if statement, we can determine which button was pressed
-    // and change the appropriate values in our GUI.
-    /**
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == redButton)
-        {
-            redScoreAmount = redScoreAmount + 1;
-            redScore.setText(""+redScoreAmount);
-        }
-        else if(e.getSource() == blueButton)
-        {
-            blueScoreAmount = blueScoreAmount + 1;
-            blueScore.setText(""+blueScoreAmount);
-        }
-        else if(e.getSource() == resetButton)
-        {
-            redScoreAmount = 0;
-            blueScoreAmount = 0;
-            redScore.setText(""+redScoreAmount);
-            blueScore.setText(""+blueScoreAmount);
-        }
-    }
-    */
-
-    private static void createAndShowGUI() {
+    private static void createAndShowGUI() 
+    {
 
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("{+-/x} Calculator {x/-+}");
@@ -245,7 +217,7 @@ public class Calculator implements  ActionListener
         frame.setContentPane(demo.createContentPane());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(280, 190);
+        frame.setSize(1000, 1000);
         frame.setVisible(true);
     }
 
@@ -260,13 +232,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "1";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "1";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == twoButton)
         {   
@@ -274,13 +246,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "2";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if 
             else 
             {
                 secondNumAmount += "2";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            }  // end else
+        } //end if
         
         if (e.getSource() == threeButton)
         {   
@@ -288,13 +260,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "3";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "3";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == fourButton)
         {   
@@ -302,13 +274,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "4";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if 
             else 
             {
                 secondNumAmount += "4";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end
 
         if (e.getSource() == fiveButton)
         {   
@@ -316,13 +288,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "5";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "5";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == sixButton)
         {   
@@ -330,13 +302,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "6";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "6";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == sevenButton)
         {   
@@ -344,13 +316,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "7";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "7";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == eightButton)
         {   
@@ -358,13 +330,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "8";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "8";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == nineButton)
         {   
@@ -372,13 +344,13 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "9";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "9";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else
+        } // end if
 
         if (e.getSource() == zeroButton)
         {   
@@ -386,65 +358,98 @@ public class Calculator implements  ActionListener
             {
                 firstNumAmount += "0";
                 firstNumLabel.setText("" + firstNumAmount);
-            }
+            } // end if
             else 
             {
                 secondNumAmount += "0";
                 secondNumLabel.setText("" + secondNumAmount);
-            }  
-        }
+            } // end else 
+        } // end if
 
         if (e.getSource() == plusButton)
         {   if (!(firstNumAmount.equals("")) &&operation.equals(""))
             {
                 operation += "+";
                 operationLabel.setText("" + operation);
-            }
-        }
+            } // end if
+        } // end if
 
         if (e.getSource() == minusButton)
         {   if (!(firstNumAmount.equals("")) &&operation.equals(""))
             {
                 operation += "-";
                 operationLabel.setText("" + operation);
-            }
-        }
+            } // end if
+        } // end if
 
         if (e.getSource() == multiplyButton)
-        {   if (!(firstNumAmount.equals("")) &&operation.equals(""))
+        {   if (!(firstNumAmount.equals("")) && operation.equals(""))
             {
                 operation += "x";
                 operationLabel.setText("" + operation);
-            }
-        }
+            } // end if
+        } // end if
 
         if (e.getSource() == divideButton)
-        {   if (!(firstNumAmount.equals("")) &&operation.equals(""))
+        {   if (!(firstNumAmount.equals("")) && operation.equals(""))
             {
                 operation += "/";
                 operationLabel.setText("" + operation);
-            }
-        }
+            } // end if
+        } // end if
 
         if(e.getSource() == pointButton)
         {
                 if (operation.equals(""))
                 {
-                    if (firstNumAmount.find(".") == false)
+                    if (firstNumAmount.indexOf(".") == -1)
                     {
                         firstNumAmount += ".";
                         firstNumLabel.setText("" + firstNumAmount);
-                    }
-                }
+                    } // end if
+                } // end if
                 else 
                 {   
-                    if (firstNumAmount.find(".") == false)
+                    if (firstNumAmount.indexOf(".") == -1)
                     {
                         secondNumAmount += ".";
                         secondNumLabel.setText("" + secondNumAmount);
-                    }
-                }  
+                    } // end if
+                }  // end else
+        } // end if
+
+        if(e.getSource() == equalsButton)
+        {
+            this.equalsButtonMethod();
+            answerLabel.setText("" + answerNumAmount);
+
         }
+    } // end actionPerformed
+
+    public void equalsButtonMethod()
+    {
+        if (!(this.firstNumAmount.equals("")) && !(this.secondNumAmount.equals("")))
+            {
+                if (this.operation.equals("+"))
+                {
+                    answerNumAmount = this.firstNumAmount.parseFloat(this.firstNumAmount) + parseFloat(this.secondNumAmount);
+                }
+
+                if (this.operation.equals("-"))
+                {
+                    
+                }
+
+                if (this.operation.equals("*"))
+                {
+                    
+                }
+
+                if (this.operation.equals("/"))
+                {
+                    
+                }
+            }
     }
 
     public static void main(String[] args) {
