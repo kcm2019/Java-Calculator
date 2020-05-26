@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.*;
 import java.math.*;
 
-public class Calculator implements ActionListener
+public class CalculatorGUI implements ActionListener
 {
     int count = 0;
 
@@ -18,6 +18,11 @@ public class Calculator implements ActionListener
     JPanel titlePanel, inputPanel, buttonPanel;
     JLabel firstNumLabel, secondNumLabel, operationLabel, answerLabel, firstNum, secondNum, operationStr, answerNum;
     JButton oneButton, twoButton, threeButton, fourButton, fiveButton,sixButton, sevenButton, eightButton, nineButton, zeroButton, plusButton,minusButton, multiplyButton, divideButton, equalsButton, pointButton, deleteOneButton, deleteAllButton, deleteSectionButton, squareRootButton, squareButton, negateButton, percentButton;
+
+    public CalculatorGUI()
+    {
+
+    }
 
     public JPanel createContentPane()
     {
@@ -248,22 +253,7 @@ public class Calculator implements ActionListener
         buttonPanel.add(percentButton);
         
         return totalGUI;
-    }
-
-    private static void createAndShowGUI() 
-    {
-
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("{+-/x} Calculator {x/-+}");
-
-        //Create and set up the content pane.
-        Calculator demo = new Calculator();
-        frame.setContentPane(demo.createContentPane());
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 450);
-        frame.setVisible(true);
-    }
+    } // end createcontentpane
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -468,7 +458,7 @@ public class Calculator implements ActionListener
             
             this.answerLabel.setText("" + this.answerNumAmount);
             //this.answerNumAmount = "";
-        }
+        } // end if
 
         if (e.getSource() == deleteOneButton)
         {
@@ -490,7 +480,7 @@ public class Calculator implements ActionListener
             secondNumLabel.setText("");
             operation = "^2";
             equalsButtonMethod();
-        }
+        } // end if 
 
         if (e.getSource() == negateButton)
         {
@@ -528,15 +518,16 @@ public class Calculator implements ActionListener
                 comp = Float.parseFloat(firstNumAmount) / 100;
                 firstNumAmount = Float.toString(comp);
                 firstNumLabel.setText(firstNumAmount);
-            }
+            } // end if
             else 
             {
                 comp = Float.parseFloat(secondNumAmount) / 100;
                 secondNumAmount = Float.toString(comp);
                 secondNumLabel.setText(secondNumAmount);
-            }
-        }
+            } // end else
+        } // end if 
 
+        
         if (e.getSource() == squareRootButton)
         {
             secondNumLabel.setText("");
@@ -580,15 +571,15 @@ public class Calculator implements ActionListener
                 {
                     computation = Float.parseFloat(this.firstNumAmount) / Float.parseFloat(this.secondNumAmount);
                     this.answerNumAmount = Float.toString(computation);
-                }
+                } // end if
                 else if(result == false)
                 {
                     answerNumAmount = "Can't /0";
                     answerLabel.setText("" + answerNumAmount);
-                }
+                } // end else
             } // end if 
 
-        }
+        } // end if
         else
         {
             if (this.operation.equals("^2"))
@@ -603,7 +594,7 @@ public class Calculator implements ActionListener
                 double comp =  Math.sqrt(Double.parseDouble(this.firstNumAmount));
                 answerNumAmount = Double.toString(comp);
                 answerLabel.setText("" + answerNumAmount);
-            } // end if
+            }
         } // end else
       
         this.firstNumLabel.setText("1st");
@@ -614,7 +605,7 @@ public class Calculator implements ActionListener
 
         this.operationLabel.setText("Op");
         this.operation = "";
-    }
+    } // end equalsButtonMethod
 
     // Performs the function of the deleteOneButton
     public void deleteOneButtonMethod()
@@ -628,14 +619,14 @@ public class Calculator implements ActionListener
         {
             this.operation = this.operation.substring(0, this.operation.length() - 1);
             this.operationLabel.setText("" + this.operation);
-        }
+        } // end else if
         //if (!(this.firstNumAmount.equals("")) && !(this.operation.length() > 0))
         else
         {
             this.secondNumAmount = this.secondNumAmount.substring(0, this.secondNumAmount.length() - 1);
             this.secondNumLabel.setText("" + secondNumAmount);
-        }
-    }
+        } // end else
+    } // end deleteOneButtonMethod
 
     // Performs the action of the deleteSectionButton
     public void deleteSectionButtonMethod()
@@ -650,7 +641,7 @@ public class Calculator implements ActionListener
             this.secondNumAmount = "";
             this.secondNumLabel.setText("2nd");
         }
-    }
+    } // end deleteSectionButtonMethod
 
     public void deleteAllButtonMethod()
     {
@@ -671,18 +662,9 @@ public class Calculator implements ActionListener
         if (this.firstNumAmount.length() > 9)
         {
             result = true;
-        }
+        } // end if
 
         return result;
-    }
-    
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+    } // end tooLong
 }
+
